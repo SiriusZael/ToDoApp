@@ -25,8 +25,7 @@
         android:text="@string/save"
         android:id="@+id/btnSaveItem"
         android:onClick="onSaveItem"
-        android:layout_below="@+id/etEditExistingText"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="96dp" />
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -70,6 +69,9 @@ public class MainActivity extends ActionBarActivity {
         File filesDir = getFilesDir();
         File file = new File(filesDir, "todo.txt");
         try {
+            if(!file.exists()) {
+                file.createNewFile();
+            }
             todoItems = new ArrayList<String>(FileUtils.readLines(file));
         } catch (IOException e) {
 
@@ -120,7 +122,9 @@ public class MainActivity extends ActionBarActivity {
             String itemName = data.getExtras().getString("itemName");
             int itemPosition = data.getExtras().getInt("itemPosition", 0);
 
-            Toast.makeText(this, itemName, Toast.LENGTH_SHORT).show();
+            todoItems.set(itemPosition, itemName);
+            aToDoAdapter.notifyDataSetChanged();
+            writeItems();
         }
     }
 }
